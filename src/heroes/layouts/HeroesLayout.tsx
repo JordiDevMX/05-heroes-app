@@ -1,24 +1,11 @@
-import { Link, Outlet } from "react-router";
+import { Outlet } from "react-router";
 // TODO: Crear un admin layout de diferente color
 export const HeroesLayout = () => {
   return (
-    <div className="bg-red-100">
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/heroes/1">Hero</Link>
-        </li>
-        <li>
-          <Link to="/search">Busqueda</Link>
-        </li>
-        <li>
-          <Link to="/admin">Admin</Link>
-        </li>
-      </ul>
-      {/* Esto hace que todas las rutas hijas tengan este mismo contenedor */}
-      <Outlet />
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">
+      <div className="max-w-7xl mx-auto p-6">
+        <Outlet />
+      </div>
     </div>
   );
 };
