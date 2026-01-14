@@ -1,5 +1,6 @@
 import { CustomJumbotron } from "@/components/ui/custom/CustomJumbotron";
 import { HeroStats } from "@/heroes/components/HeroStats";
+import { SearchControls } from "./ui/SearchControls";
 
 export const SearchPage = () => {
   return (
@@ -9,6 +10,8 @@ export const SearchPage = () => {
         description="Descubre, explora y administra super heroes y villanos"
       />
       <HeroStats />
+      {/* Filter & Search */}
+      <SearchControls />
     </>
   );
 };
