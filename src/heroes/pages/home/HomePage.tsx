@@ -1,16 +1,22 @@
-import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { CustomJumbotron } from "@/components/ui/custom/CustomJumbotron";
 import { HeroStats } from "../../components/HeroStats";
 import { HeroGrid } from "@/heroes/components/HeroGrid";
-import { useState } from "react";
-import { CustomPagination } from "@/heroes/components/custom/CustomPagination";
+import { useEffect, useState } from "react";
+import { CustomPagination } from "@/components/ui/custom/CustomPagination";
+import { CustomBreadcrumbs } from "@/components/ui/custom/CustomBreadcrumbs";
+import { getHeroesByPage } from "@/heroes/actions/get-heroes-by-page.action";
 
 export const HomePage = () => {
   const [activeTab, setActiveTab] = useState<
     "villains" | "heroes" | "favorites" | "all"
   >("all");
+
+  useEffect(() => {
+    getHeroesByPage().then((heroes) => {
+      console.log({ heroes });
+    });
+  }, []);
 
   return (
     <>
@@ -19,6 +25,8 @@ export const HomePage = () => {
         title="Universo de Super Heroes"
         description="Descubre, explora y administra super heroes y villanos"
       />
+
+      <CustomBreadcrumbs currentPage="Super Heroes" />
 
       {/* Stats Dashboard */}
       <HeroStats />

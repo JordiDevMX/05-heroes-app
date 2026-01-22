@@ -9,6 +9,7 @@ interface Props {
 }
 
 export interface Character {
+  id: number;
   img: string;
   isActive: boolean;
   universeBadge: string;
@@ -33,6 +34,7 @@ export const HeroGridCard = ({ characters }: Props) => {
       {characters.map(
         (
           {
+            id,
             img,
             isActive,
             universeBadge,
@@ -44,9 +46,12 @@ export const HeroGridCard = ({ characters }: Props) => {
             firstAppeared,
             company,
             stats: { strength, intelligence, speed, durability },
-          } // <-- Aquí empieza la función de flecha y el retorno implícito
+          }, // <-- Aquí empieza la función de flecha y el retorno implícito
         ) => (
-          <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-white to-gray-50">
+          <Card
+            key={id}
+            className="group overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-white to-gray-50"
+          >
             <div className="relative h-64 overflow-hidden">
               <img
                 src={img}
@@ -186,7 +191,7 @@ export const HeroGridCard = ({ characters }: Props) => {
               </div>
             </CardContent>
           </Card>
-        )
+        ),
       )}
     </>
   );

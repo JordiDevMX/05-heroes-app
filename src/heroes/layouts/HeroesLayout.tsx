@@ -1,6 +1,5 @@
 import { Outlet } from "react-router";
-import { CustomMenu } from "../../components/CustomMenu";
-// TODO: Crear un admin layout de diferente color
+import { CustomMenu } from "../../components/ui/custom/CustomMenu";
 export const HeroesLayout = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-purple-50">

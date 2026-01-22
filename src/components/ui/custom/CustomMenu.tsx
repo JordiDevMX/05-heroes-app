@@ -3,7 +3,7 @@ import {
   NavigationMenuLink,
 } from "@radix-ui/react-navigation-menu";
 import { Link, useLocation } from "react-router";
-import { NavigationMenuList, NavigationMenu } from "./ui/navigation-menu";
+import { NavigationMenuList, NavigationMenu } from "../navigation-menu";
 import { cn } from "@/lib/utils";
 
 export const CustomMenu = () => {
