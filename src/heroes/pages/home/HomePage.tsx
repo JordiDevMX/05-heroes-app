@@ -13,13 +13,14 @@ export const HomePage = () => {
     "villains" | "heroes" | "favorites" | "all"
   >("all");
 
-  const { data } = useQuery({
+  // TODO: Usar la respuesta de la API para crear las tarjetas de los heroes en "All characters"
+  const { data: heroesResponse } = useQuery({
     queryKey: ["heroes"],
     queryFn: () => getHeroesByPageAction(),
     staleTime: 1000 * 60 * 5, // 5 mins
   });
 
-  console.log({ data });
+  console.log({ heroesResponse });
 
   // useEffect(() => {
   //   getHeroesByPage().then((heroes) => {});
@@ -62,23 +63,23 @@ export const HomePage = () => {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="all">
-          {/* Mostrar todos los personajes */}
-          <HeroGrid />
+          {/* Mostrar todos los personajeSs */}
+          <HeroGrid heroes={heroesResponse?.heroes ?? []} />
         </TabsContent>
         <TabsContent value="favorites">
           {/* Mostrar todos los personajes favoritos */}
           <h1>Favoritos!!!</h1>
-          <HeroGrid />
+          <HeroGrid heroes={heroesResponse?.heroes ?? []} />
         </TabsContent>
         <TabsContent value="heroes">
           {/* Mostrar todos los heroes */}
           <h1>Heroes</h1>
-          <HeroGrid />
+          <HeroGrid heroes={heroesResponse?.heroes ?? []} />
         </TabsContent>
         {/* Mostrar todos los villanos */}
         <TabsContent value="villains">
           <h1>Villanos</h1>
-          <HeroGrid />
+          <HeroGrid heroes={heroesResponse?.heroes ?? []} />
         </TabsContent>
       </Tabs>
       <CustomPagination totalPages={8} />
