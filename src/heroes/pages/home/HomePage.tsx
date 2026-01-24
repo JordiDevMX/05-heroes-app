@@ -20,8 +20,6 @@ export const HomePage = () => {
     staleTime: 1000 * 60 * 5, // 5 mins
   });
 
-  console.log({ heroesResponse });
-
   // useEffect(() => {
   //   getHeroesByPage().then((heroes) => {});
   // }, []);

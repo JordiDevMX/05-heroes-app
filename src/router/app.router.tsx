@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Navigate } from "react-router";
 import { lazy } from "react";
 
 import { HomePage } from "@/heroes/pages/home/HomePage";
@@ -31,12 +31,16 @@ export const appRouter = createBrowserRouter([
       },
       {
         // No se coloca el "/" inicial porque ya esta dado por el padre (HeroesLayout)
-        path: "heroes/1",
+        path: "heroes/:idSlug",
         element: <HeroPage />,
       },
       {
         path: "search",
         element: <SearchPage />,
+      },
+      {
+        path: "*",
+        element: <Navigate to="/" />,
       },
     ],
   },
