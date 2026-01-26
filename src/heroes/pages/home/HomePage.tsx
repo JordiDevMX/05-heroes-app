@@ -2,7 +2,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { CustomJumbotron } from "@/components/ui/custom/CustomJumbotron";
 import { HeroStats } from "../../components/HeroStats";
 import { HeroGrid } from "@/heroes/components/HeroGrid";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { CustomPagination } from "@/components/ui/custom/CustomPagination";
 import { CustomBreadcrumbs } from "@/components/ui/custom/CustomBreadcrumbs";
 import { getHeroesByPageAction } from "@/heroes/actions/get-heroes-by-page.action";
@@ -12,11 +12,9 @@ import { useSearchParams } from "react-router";
 export const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // TODO: Dejar de usar el useState y usar "activeTab"
-  // TODO: El valor de activeTab sera el URL que mandaremos a traves de una llave llamada "tab"
-  // ? Ejemplo: tabAll deberian de pasar todos los favoritos, todos los heroes o anti-heroes
-
   const activeTab = searchParams.get("tab") ?? "all";
+  const page = searchParams.get("page") ?? "1";
+  const limit = searchParams.get("limit") ?? "6";
 
   const currentTab = useMemo(() => {
     const validTabs = ["all", "favorites", "heroes", "villains"];
@@ -25,7 +23,7 @@ export const HomePage = () => {
 
   const { data: heroesResponse } = useQuery({
     queryKey: ["heroes"],
-    queryFn: () => getHeroesByPageAction(),
+    queryFn: () => getHeroesByPageAction(+page, +limit),
     staleTime: 1000 * 60 * 5, // 5 mins
   });
 
