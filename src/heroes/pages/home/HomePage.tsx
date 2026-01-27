@@ -22,14 +22,10 @@ export const HomePage = () => {
   }, [activeTab]);
 
   const { data: heroesResponse } = useQuery({
-    queryKey: ["heroes"],
+    queryKey: ["heroes", { page, limit }],
     queryFn: () => getHeroesByPageAction(+page, +limit),
     staleTime: 1000 * 60 * 5, // 5 mins
   });
-
-  // useEffect(() => {
-  //   getHeroesByPage().then((heroes) => {});
-  // }, []);
 
   return (
     <>
@@ -113,7 +109,7 @@ export const HomePage = () => {
           <HeroGrid heroes={heroesResponse?.heroes ?? []} />
         </TabsContent>
       </Tabs>
-      <CustomPagination totalPages={8} />
+      <CustomPagination totalPages={heroesResponse?.pages ?? 1} />
     </>
   );
 };
